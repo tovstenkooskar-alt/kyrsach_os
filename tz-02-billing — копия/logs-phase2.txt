@@ -1,0 +1,146 @@
+EXIT 0
+----- STDOUT -----
+===== PHASE 2 FIX =====
+2026-11-01 16:02:06 UTC
+----- id billing -----
+uid=997(billing) gid=973(billing) groups=973(billing)
+billing:x:997:973::/var/lib/billing:/usr/sbin/nologin
+billing:x:973:
+----- tail api.log before changes -----
+2026-11-01 16:02:05 level=debug sql="SELECT id, amount, status FROM payments WHERE id=4849" rows=1 ms=3
+2026-11-01 16:02:05 level=debug sql="SELECT id, amount, status FROM payments WHERE id=4850" rows=1 ms=3
+===== DRY RUN cleanup-logs.sh =====
+Раздел до очистки:
+/dev/loop17     172M  158M  9.8M  95% /var/log/billing
+Будет удалено:
+       25   7168 -rw-r--r--   1 billing  billing   7340032 Oct 11 16:00 /var/log/billing/api-2026-10-11.log
+       17   7168 -rw-r--r--   1 billing  billing   7340032 Oct 19 16:00 /var/log/billing/api-2026-10-19.log
+       15   7168 -rw-r--r--   1 billing  billing   7340032 Oct 21 16:00 /var/log/billing/api-2026-10-21.log
+       20   7168 -rw-r--r--   1 billing  billing   7340032 Oct 16 16:00 /var/log/billing/api-2026-10-16.log
+       18   7168 -rw-r--r--   1 billing  billing   7340032 Oct 18 16:00 /var/log/billing/api-2026-10-18.log
+       24   7168 -rw-r--r--   1 billing  billing   7340032 Oct 12 16:00 /var/log/billing/api-2026-10-12.log
+       16   7168 -rw-r--r--   1 billing  billing   7340032 Oct 20 16:00 /var/log/billing/api-2026-10-20.log
+       26   7168 -rw-r--r--   1 billing  billing   7340032 Oct 10 16:00 /var/log/billing/api-2026-10-10.log
+       22   7168 -rw-r--r--   1 billing  billing   7340032 Oct 14 16:00 /var/log/billing/api-2026-10-14.log
+       19   7168 -rw-r--r--   1 billing  billing   7340032 Oct 17 16:00 /var/log/billing/api-2026-10-17.log
+       11   7168 -rw-r--r--   1 billing  billing   7340032 Oct 24 16:00 /var/log/billing/api-2026-10-24.log
+       30  40960 -rw-r--r--   1 billing  billing  41943040 Oct 30 16:00 /var/log/billing/core.billing-api.4711
+       21   7168 -rw-r--r--   1 billing  billing   7340032 Oct 15 16:00 /var/log/billing/api-2026-10-15.log
+       13   7168 -rw-r--r--   1 billing  billing   7340032 Oct 23 16:00 /var/log/billing/api-2026-10-23.log
+       14   7168 -rw-r--r--   1 billing  billing   7340032 Oct 22 16:00 /var/log/billing/api-2026-10-22.log
+       23   7168 -rw-r--r--   1 billing  billing   7340032 Oct 13 16:00 /var/log/billing/api-2026-10-13.log
+Ничего не удалено. Для удаления: sudo bash /home/vboxuser/cleanup-logs.sh --apply
+===== MOVE EXPORT 2.2.3 =====
+owner before: billing:billing 644
+b239e4fe4d904bdcc29a9b29f016a7f7ad1a2dcd5ae9eccf59dc7ea7bbb116e9  /var/log/billing/exports/export-2026-09.csv
+owner after: billing:billing 644
+b239e4fe4d904bdcc29a9b29f016a7f7ad1a2dcd5ae9eccf59dc7ea7bbb116e9  /var/lib/billing/exports/export-2026-09.csv
+stored: b239e4fe4d904bdcc29a9b29f016a7f7ad1a2dcd5ae9eccf59dc7ea7bbb116e9
+CHECKSUM_OK
+===== CONFIG 2.3.2 2.4.1 =====
+root billing 640 /etc/billing/billing.conf
+LOG_LEVEL=info
+EXPORT_DIR=/var/lib/billing/exports
+BILLING_CAN_READ
+NOBODY_CANNOT_READ
+===== APPLY cleanup-logs.sh 2.2.1 2.2.2 =====
+Раздел до очистки:
+/dev/loop17     172M  149M   19M  89% /var/log/billing
+Будет удалено:
+       25   7168 -rw-r--r--   1 billing  billing   7340032 Oct 11 16:00 /var/log/billing/api-2026-10-11.log
+       17   7168 -rw-r--r--   1 billing  billing   7340032 Oct 19 16:00 /var/log/billing/api-2026-10-19.log
+       15   7168 -rw-r--r--   1 billing  billing   7340032 Oct 21 16:00 /var/log/billing/api-2026-10-21.log
+       20   7168 -rw-r--r--   1 billing  billing   7340032 Oct 16 16:00 /var/log/billing/api-2026-10-16.log
+       18   7168 -rw-r--r--   1 billing  billing   7340032 Oct 18 16:00 /var/log/billing/api-2026-10-18.log
+       24   7168 -rw-r--r--   1 billing  billing   7340032 Oct 12 16:00 /var/log/billing/api-2026-10-12.log
+       16   7168 -rw-r--r--   1 billing  billing   7340032 Oct 20 16:00 /var/log/billing/api-2026-10-20.log
+       26   7168 -rw-r--r--   1 billing  billing   7340032 Oct 10 16:00 /var/log/billing/api-2026-10-10.log
+       22   7168 -rw-r--r--   1 billing  billing   7340032 Oct 14 16:00 /var/log/billing/api-2026-10-14.log
+       19   7168 -rw-r--r--   1 billing  billing   7340032 Oct 17 16:00 /var/log/billing/api-2026-10-17.log
+       11   7168 -rw-r--r--   1 billing  billing   7340032 Oct 24 16:00 /var/log/billing/api-2026-10-24.log
+       30  40960 -rw-r--r--   1 billing  billing  41943040 Oct 30 16:00 /var/log/billing/core.billing-api.4711
+       21   7168 -rw-r--r--   1 billing  billing   7340032 Oct 15 16:00 /var/log/billing/api-2026-10-15.log
+       13   7168 -rw-r--r--   1 billing  billing   7340032 Oct 23 16:00 /var/log/billing/api-2026-10-23.log
+       14   7168 -rw-r--r--   1 billing  billing   7340032 Oct 22 16:00 /var/log/billing/api-2026-10-22.log
+       23   7168 -rw-r--r--   1 billing  billing   7340032 Oct 13 16:00 /var/log/billing/api-2026-10-13.log
+Раздел после очистки:
+/dev/loop17     172M  3.7M  164M   3% /var/log/billing
+----- leftovers -----
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/loop17     172M  3.7M  164M   3% /var/log/billing
+===== RESTART billing-api 2.3.1 2.3.2 =====
+TERM api pid=5861
+----- ps after api restart -----
+    PID    PPID STAT     ELAPSED CMD
+   5860    5857 Ss         01:45 python3 /usr/local/lib/billing/billingd.py
+   5862    5860 S          01:45 /bin/bash /usr/local/bin/billing-report
+   5867    5862 R          01:45 /bin/bash /usr/local/bin/billing-report --worker 1
+   5868    5862 R          01:45 /bin/bash /usr/local/bin/billing-report --worker 2
+   5869    5862 R          01:45 /bin/bash /usr/local/bin/billing-report --worker 3
+   5870    5862 R          01:45 /bin/bash /usr/local/bin/billing-report --worker 4
+   5871    5862 R          01:45 /bin/bash /usr/local/bin/billing-report --worker 5
+   5872    5862 R          01:45 /bin/bash /usr/local/bin/billing-report --worker 6
+   5873    5862 R          01:45 /bin/bash /usr/local/bin/billing-report --worker 7
+   5874    5862 R          01:45 /bin/bash /usr/local/bin/billing-report --worker 8
+   6401    5860 S          00:02 /bin/bash /usr/local/bin/billing-api
+   6404    6401 S          00:02 sleep 5
+----- api.log tail -----
+2026-11-01 16:02:06 level=debug sql="SELECT id, amount, status FROM payments WHERE id=4896" rows=1 ms=3
+2026-11-01 16:02:06 level=debug sql="SELECT id, amount, status FROM payments WHERE id=4897" rows=1 ms=3
+2026-11-01 16:02:06 level=debug sql="SELECT id, amount, status FROM payments WHERE id=4898" rows=1 ms=3
+2026-11-01 16:02:06 level=debug sql="SELECT id, amount, status FROM payments WHERE id=4899" rows=1 ms=3
+2026-11-01 16:02:06 level=debug sql="SELECT id, amount, status FROM payments WHERE id=4900" rows=1 ms=3
+2026-11-01 16:02:06 pid=5861 stopped
+2026-11-01 16:02:08 pid=6401 level=info started
+2026-11-01 16:02:08 level=info POST /api/payments 201
+===== STOP billing-report 2.3.3 =====
+before:
+5862 /bin/bash /usr/local/bin/billing-report
+5867 /bin/bash /usr/local/bin/billing-report --worker 1
+5868 /bin/bash /usr/local/bin/billing-report --worker 2
+5869 /bin/bash /usr/local/bin/billing-report --worker 3
+5870 /bin/bash /usr/local/bin/billing-report --worker 4
+5871 /bin/bash /usr/local/bin/billing-report --worker 5
+5872 /bin/bash /usr/local/bin/billing-report --worker 6
+5873 /bin/bash /usr/local/bin/billing-report --worker 7
+5874 /bin/bash /usr/local/bin/billing-report --worker 8
+TERM 5862 5867 5868 5869 5870 5871 5872 5873 5874
+after TERM:
+5867 /bin/bash /usr/local/bin/billing-report --worker 1
+KILL 5867
+after KILL:
+NONE
+NO_MATCH
+supervisor:
+5860 python3 /usr/local/lib/billing/billingd.py
+===== ACCEPTANCE =====
+Disk
+  OK    log partition is used at most 50 %
+  OK    no logs older than 7 days on the partition
+  OK    core dump removed
+  OK    export moved to /var/lib/billing/exports intact
+  OK    no exports left in /var/log/billing
+Configuration
+  OK    EXPORT_DIR=/var/lib/billing/exports
+  OK    LOG_LEVEL is not debug
+  OK    billing.conf: root:billing, closed for others
+Processes
+  OK    billingd supervisor is running
+  OK    billing-api runs and started with level=info
+  OK    no debug lines after the restart
+  OK    billing-report and its workers are stopped
+Result: 12 of 12
+===== AFTER =====
+2026-11-01 16:02:14 UTC
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/loop17     172M  3.7M  164M   3% /var/log/billing
+ 16:02:14 up 8 min,  3 users,  load average: 6.75, 2.61, 1.01
+    PID    PPID STAT %CPU     ELAPSED CMD
+   5860    5857 Ss    0.0       01:48 python3 /usr/local/lib/billing/billingd.py
+   6401    5860 S     0.0       00:06 /bin/bash /usr/local/bin/billing-api
+   6412    6401 S     0.0       00:01 sleep 5
+===== PHASE 2 DONE =====
+
+----- STDERR -----
+
+

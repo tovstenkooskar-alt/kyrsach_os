@@ -1,0 +1,16 @@
+Disk
+  OK    log partition is used at most 50 %
+  OK    no logs older than 7 days on the partition
+  OK    core dump removed
+  OK    export moved to /var/lib/billing/exports intact
+  OK    no exports left in /var/log/billing
+Configuration
+  OK    EXPORT_DIR=/var/lib/billing/exports
+  OK    LOG_LEVEL is not debug
+  OK    billing.conf: root:billing, closed for others
+Processes
+  OK    billingd supervisor is running
+  OK    billing-api runs and started with level=info
+  OK    no debug lines after the restart
+  OK    billing-report and its workers are stopped
+Result: 12 of 12

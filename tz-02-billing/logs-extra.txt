@@ -1,0 +1,37 @@
+EXIT 0
+----- STDOUT -----
+--- report head ---
+#!/bin/bash
+# billing-report 3.8 — ночной расчёт сверки платежей
+if [ "${1:-}" = --worker ]; then
+  [ "$2" = 1 ] && trap 'echo "worker 1: TERM ignored, reconciliation in progress" >> /var/lib/billing/report.log' TERM
+  while true; do for ((i = 0; i < 200000; i++)); do :; done; done
+fi
+for n in $(seq $(( $(nproc) * 2 ))); do /usr/local/bin/billing-report --worker $n & done
+wait
+--- billingd.log ---
+2026-11-01 16:03:00 /usr/local/bin/billing-api started pid=6756
+2026-11-01 16:03:00 /usr/local/bin/billing-report started pid=6757
+2026-11-01 16:03:03 billing-api pid=6756 exit 0, restarting
+2026-11-01 16:03:05 /usr/local/bin/billing-api started pid=6825
+2026-11-01 16:03:08 billing-report pid=6757 signal 15
+--- ls ---
+drwxr-xr-x 2 root    root    4096 Nov  1 16:03 /etc/billing
+-rw-r----- 1 root    billing  179 Nov  1 16:03 /etc/billing/billing.conf
+-rwxr-xr-x 1 root    root     648 Nov  1 16:02 /usr/local/bin/billing-api
+-rwxr-xr-x 1 root    root     408 Nov  1 16:02 /usr/local/bin/billing-report
+-rwxr-xr-x 1 root    root     836 Nov  1 16:02 /usr/local/lib/billing/billingd.py
+drwxr-x--- 3 billing billing 4096 Nov  1 16:03 /var/lib/billing
+drwxr-x--- 2 billing billing 4096 Nov  1 16:03 /var/lib/billing/exports
+drwxr-xr-x 2 billing billing 4096 Nov  1 16:03 /var/log/billing
+--- now ---
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/loop17     172M  3.2M  165M   2% /var/log/billing
+    PID    PPID STAT     ELAPSED CMD
+   6755    6752 Ss         01:15 python3 /usr/local/lib/billing/billingd.py
+   6825    6755 S          01:10 /bin/bash /usr/local/bin/billing-api
+   7065    6825 S          00:04 sleep 5
+
+----- STDERR -----
+
+

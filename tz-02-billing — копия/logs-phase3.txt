@@ -1,0 +1,118 @@
+EXIT 0
+----- STDOUT -----
+===== FRESH STAND FOR SCRIPT TEST =====
+2026-11-01 16:02:57 UTC
+/dev/loop17     172M  158M   11M  94% /var/log/billing
+===== disk-watch above threshold (expect exit 1) =====
+Каталог: /var/log/billing
+Заполнение раздела: 94%
+Пять самых больших файлов:
+  41943040  /var/log/billing/core.billing-api.4711
+   9359161  /var/log/billing/exports/export-2026-09.csv
+   7340032  /var/log/billing/api-2026-10-24.log
+   7340032  /var/log/billing/api-2026-10-23.log
+   7340032  /var/log/billing/api-2026-10-22.log
+Выше порога 50%
+disk-watch-high-exit=1
+===== cleanup dry-run: export must be absent from the list =====
+Раздел до очистки:
+/dev/loop17     172M  158M   11M  94% /var/log/billing
+Будет удалено:
+       14   7168 -rw-r--r--   1 billing  billing   7340032 Oct 22 16:02 /var/log/billing/api-2026-10-22.log
+       19   7168 -rw-r--r--   1 billing  billing   7340032 Oct 17 16:02 /var/log/billing/api-2026-10-17.log
+       15   7168 -rw-r--r--   1 billing  billing   7340032 Oct 21 16:02 /var/log/billing/api-2026-10-21.log
+       16   7168 -rw-r--r--   1 billing  billing   7340032 Oct 20 16:02 /var/log/billing/api-2026-10-20.log
+       13   7168 -rw-r--r--   1 billing  billing   7340032 Oct 23 16:02 /var/log/billing/api-2026-10-23.log
+       17   7168 -rw-r--r--   1 billing  billing   7340032 Oct 19 16:02 /var/log/billing/api-2026-10-19.log
+       21   7168 -rw-r--r--   1 billing  billing   7340032 Oct 15 16:02 /var/log/billing/api-2026-10-15.log
+       25   7168 -rw-r--r--   1 billing  billing   7340032 Oct 11 16:02 /var/log/billing/api-2026-10-11.log
+       18   7168 -rw-r--r--   1 billing  billing   7340032 Oct 18 16:02 /var/log/billing/api-2026-10-18.log
+       26   7168 -rw-r--r--   1 billing  billing   7340032 Oct 10 16:02 /var/log/billing/api-2026-10-10.log
+       24   7168 -rw-r--r--   1 billing  billing   7340032 Oct 12 16:02 /var/log/billing/api-2026-10-12.log
+       23   7168 -rw-r--r--   1 billing  billing   7340032 Oct 13 16:02 /var/log/billing/api-2026-10-13.log
+       20   7168 -rw-r--r--   1 billing  billing   7340032 Oct 16 16:02 /var/log/billing/api-2026-10-16.log
+       11   7168 -rw-r--r--   1 billing  billing   7340032 Oct 24 16:02 /var/log/billing/api-2026-10-24.log
+       22   7168 -rw-r--r--   1 billing  billing   7340032 Oct 14 16:02 /var/log/billing/api-2026-10-14.log
+       30  40960 -rw-r--r--   1 billing  billing  41943040 Oct 30 16:02 /var/log/billing/core.billing-api.4711
+Ничего не удалено. Для удаления: sudo bash /home/vboxuser/cleanup-logs.sh --apply
+EXPORT_NOT_LISTED
+===== cleanup --apply =====
+Раздел до очистки:
+/dev/loop17     172M  158M   11M  94% /var/log/billing
+Будет удалено:
+       14   7168 -rw-r--r--   1 billing  billing   7340032 Oct 22 16:02 /var/log/billing/api-2026-10-22.log
+       19   7168 -rw-r--r--   1 billing  billing   7340032 Oct 17 16:02 /var/log/billing/api-2026-10-17.log
+       15   7168 -rw-r--r--   1 billing  billing   7340032 Oct 21 16:02 /var/log/billing/api-2026-10-21.log
+       16   7168 -rw-r--r--   1 billing  billing   7340032 Oct 20 16:02 /var/log/billing/api-2026-10-20.log
+       13   7168 -rw-r--r--   1 billing  billing   7340032 Oct 23 16:02 /var/log/billing/api-2026-10-23.log
+       17   7168 -rw-r--r--   1 billing  billing   7340032 Oct 19 16:02 /var/log/billing/api-2026-10-19.log
+       21   7168 -rw-r--r--   1 billing  billing   7340032 Oct 15 16:02 /var/log/billing/api-2026-10-15.log
+       25   7168 -rw-r--r--   1 billing  billing   7340032 Oct 11 16:02 /var/log/billing/api-2026-10-11.log
+       18   7168 -rw-r--r--   1 billing  billing   7340032 Oct 18 16:02 /var/log/billing/api-2026-10-18.log
+       26   7168 -rw-r--r--   1 billing  billing   7340032 Oct 10 16:02 /var/log/billing/api-2026-10-10.log
+       24   7168 -rw-r--r--   1 billing  billing   7340032 Oct 12 16:02 /var/log/billing/api-2026-10-12.log
+       23   7168 -rw-r--r--   1 billing  billing   7340032 Oct 13 16:02 /var/log/billing/api-2026-10-13.log
+       20   7168 -rw-r--r--   1 billing  billing   7340032 Oct 16 16:02 /var/log/billing/api-2026-10-16.log
+       11   7168 -rw-r--r--   1 billing  billing   7340032 Oct 24 16:02 /var/log/billing/api-2026-10-24.log
+       22   7168 -rw-r--r--   1 billing  billing   7340032 Oct 14 16:02 /var/log/billing/api-2026-10-14.log
+       30  40960 -rw-r--r--   1 billing  billing  41943040 Oct 30 16:02 /var/log/billing/core.billing-api.4711
+Раздел после очистки:
+/dev/loop17     172M   13M  156M   8% /var/log/billing
+===== export still in place =====
+billing:billing 644 /var/log/billing/exports/export-2026-09.csv
+hash=b239e4fe4d904bdcc29a9b29f016a7f7ad1a2dcd5ae9eccf59dc7ea7bbb116e9
+EXPORT_INTACT
+old logs left:
+/var/log/billing/exports/export-2026-09.csv
+cores left:
+===== FINISH INCIDENT FIX =====
+TERM api 6756
+===== disk-watch under threshold (expect exit 0) =====
+Каталог: /var/log/billing
+Заполнение раздела: 2%
+Пять самых больших файлов:
+   1048576  /var/log/billing/api-2026-10-31.log
+   1048576  /var/log/billing/api-2026-10-30.log
+   1048576  /var/log/billing/api-2026-10-29.log
+     15584  /var/log/billing/api.log
+Не выше порога 50%
+disk-watch-low-exit=0
+===== disk-watch strict (expect exit 1) =====
+Каталог: /var/log/billing
+Заполнение раздела: 2%
+Пять самых больших файлов:
+   1048576  /var/log/billing/api-2026-10-31.log
+   1048576  /var/log/billing/api-2026-10-30.log
+   1048576  /var/log/billing/api-2026-10-29.log
+     15584  /var/log/billing/api.log
+Выше порога 1%
+disk-watch-strict-exit=1
+===== snapshot =====
+Сохранено: snapshot-20261101-160311.txt
+===== ACCEPTANCE =====
+Disk
+  OK    log partition is used at most 50 %
+  OK    no logs older than 7 days on the partition
+  OK    core dump removed
+  OK    export moved to /var/lib/billing/exports intact
+  OK    no exports left in /var/log/billing
+Configuration
+  OK    EXPORT_DIR=/var/lib/billing/exports
+  OK    LOG_LEVEL is not debug
+  OK    billing.conf: root:billing, closed for others
+Processes
+  OK    billingd supervisor is running
+  OK    billing-api runs and started with level=info
+  OK    no debug lines after the restart
+  OK    billing-report and its workers are stopped
+Result: 12 of 12
+===== PS TREE =====
+    PID    PPID STAT     ELAPSED CMD
+   6755    6752 Ss         00:11 python3 /usr/local/lib/billing/billingd.py
+   6825    6755 S          00:06 /bin/bash /usr/local/bin/billing-api
+   6835    6825 S          00:01 sleep 5
+===== PHASE 3 DONE =====
+
+----- STDERR -----
+
+
